@@ -1,0 +1,23 @@
+{
+    "name": "urskin-hapi",
+    "version": "1.0.0",
+    "description": "npm init -y\r npm install eslint --save-dev\r npm i nodemon cors express fire\r npm install multer @google-cloud/storage",
+    "main": "index.js",
+    "scripts": {
+        "start": "node ./src/server/server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@google-cloud/firestore": "^7.8.0",
+        "@hapi/hapi": "^21.3.9",
+        "firebase-admin": "^12.1.1"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.4.0",
+        "eslint": "^9.4.0",
+        "globals": "^15.3.0"
+    }
+}
