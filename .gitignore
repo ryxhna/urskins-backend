@@ -1,3 +1,4 @@
+${APPDATA}npm
 node_modules
 service-key/
 package-lock.json

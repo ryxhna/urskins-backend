@@ -4,6 +4,10 @@ const routes = require('./routes');
 const init = async() => {
     // mengaktifkan CORS diseluruh router yang ada diserver 
     const server = Hapi.server({
+        // // Mendefinisikan port di docker, jadi gak langsung
+        // port: process.env.PORT,
+        // host: '0.0.0.0',
+
         port: 3000,
         host: 'localhost',
         routes: {
