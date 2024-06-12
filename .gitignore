@@ -1,5 +1,6 @@
 ${APPDATA}npm
 node_modules
 package-lock.json
-credentials.
+serviceAccountKet.json
+credentials.json
 README.md

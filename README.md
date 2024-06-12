@@ -65,7 +65,7 @@ git config --global user.name ryxhna
 
 git init
 git add .
-git commit -m "update code"
+git commit -m "code fix temporarily"
 git branch -M main
 git push -u origin main
 
