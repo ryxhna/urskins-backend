@@ -1,22 +1,18 @@
-const { Firestore } = require('@google-cloud/firestore');
+const { firestore } = require('./firestore');
 
 async function storeData(id, data) {
-    const db = new Firestore();
-
-    const userDatabaseCollection = db.collection('userData');
+    const userDatabaseCollection = firestore.collection('userData');
     return userDatabaseCollection.doc(id).set(data);
 }
 
 async function getFirestoreData() {
     try {
-        const db = new Firestore();
-
-        const snapshot = await db.collection('userData').get();
+        const snapshot = await firestore.collection('userData').get();
         const histories = [];
         snapshot.forEach(doc => {
             histories.push(doc.data());
         });
-        // bakal ngasih array kosong kalo datanya gaada
+        // returns an empty array if no data is found
         return histories.length > 0 ? histories : [];
 
     } catch (error) {
@@ -25,4 +21,4 @@ async function getFirestoreData() {
     }
 }
 
-module.exports = { storeData, getFirestoreData, };
+module.exports = { storeData, getFirestoreData };

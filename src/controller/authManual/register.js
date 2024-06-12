@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const { storeData, getFirestoreData } = require('../../firestore/userData');
+const { storeData, getFirestoreData } = require('../database/firestoreFunction');
 
 function hashPassword(password) {
     return crypto.createHash('sha256').update(password).digest('hex');
@@ -41,7 +41,11 @@ async function userRegist(request, h) {
     const response = h.response({
         status: 'success',
         message: 'User registered successfully',
-        data: { id: userId, fullName: fullName, email: email }
+        data: {
+            id: userId,
+            fullName: fullName,
+            email: email
+        }
     });
     response.code(201);
     return response;

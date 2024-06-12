@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const { getFirestoreData } = require('../../firestore/userData');
+const { getFirestoreData } = require('../database/firestoreFunction');
 
 function hashPassword(password) {
     return crypto.createHash('sha256').update(password).digest('hex');
@@ -9,28 +9,27 @@ function hashPassword(password) {
 async function userLogin(request, h) {
     const { email, password } = request.payload;
 
-    // Retrieve all user data
     const users = await getFirestoreData();
 
-    // Find the user by username
+    // Check if the email is registered
     const user = users.find(user => user.email === email);
     if (!user) {
         const response = h.response({
             status: 'fail',
-            message: 'Invalid username or password'
+            message: 'Email not registered'
         });
-        response.code(401);
+        response.code(400);
         return response;
     }
 
-    // Hash the incoming password and compare with the stored hash
+    // Check if the password is correct
     const hashedPassword = hashPassword(password);
-    if (hashedPassword !== user.password) {
+    if (user.password !== hashedPassword) {
         const response = h.response({
             status: 'fail',
-            message: 'Invalid email or password'
+            message: 'Incorrect password'
         });
-        response.code(401);
+        response.code(400);
         return response;
     }
 
