@@ -10,7 +10,10 @@ npm init --y
 npm install @hapi/hapi
 npm install eslint --save-dev
 npx eslint --init
+
+----- Client-Side and Server-Side Development -----
 npm install @google-cloud/firestore
+npm install firebase
 npm install firebase-admin
 
 ----- APIs for Login by Google -----
@@ -39,7 +42,7 @@ export GOOGLE_APPLICATION_CREDENTIALS="src/service-key/serviceaccountkey-firesto
 firebase login
 firebase projects:list
 firebase init firestore
-firebase deploy --only firestore
+firebase deploy --config src/firebase-config/firebase.json
 
 ----- Machine Learning -----
 req tensorflow ml: 2.13.0
@@ -57,14 +60,22 @@ gcloud config get-value project
 npm run start
 
 ----- Upload to GitHub -----
+git config --global user.email ghina.desrizky@gmail.com
+git config --global user.name ryxhna
+
 git init
 git add .
-git commit -m "second commit"
+git commit -m "update code"
 git branch -M main
-git remote add origin https://github.com/ryxhna/urskins-backend.git
 git push -u origin main
 
+----- Configure Git to Use the Token (Optional but Recommended) -----
+git config --global credential.helper manager-core
+git config --global credential.helper store
 
 ------------------------------
 CATATAN
 > We're using admin.firestore() to access Firestore, which is the recommended way when using Firebase Admin SDK.
+> token github ghina: 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
+> git remote add origin https://github.com/ryxhna/urskins-backend.git
+> git remote set-url origin https://ryxhna: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@github.com/ryxhna/urskins-backend.git
