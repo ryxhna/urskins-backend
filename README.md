@@ -70,7 +70,7 @@ git config --global user.name ryxhna
 
 git init
 git add .
-git commit -m "code fix temporarily"
+git commit -m "temporary code predict"
 git branch -M main
 git push -u origin main
 
