@@ -35,21 +35,21 @@ const callback = async(request, h) => {
                 id: data.id,
                 email: data.email,
                 name: data.name,
-                picture: data.picture
             });
         } else {
             // User exists, you can update their information if needed
             await userRef.update({
                 email: data.email,
                 name: data.name,
-                picture: data.picture
             });
         }
 
         return h.response({ data }).code(200);
     } catch (error) {
         console.error('Error during Google OAuth callback:', error);
-        return h.response({ error: 'Internal Server Error' }).code(500);
+        return h.response({
+            error: 'Internal Server Error'
+        }).code(500);
     }
 };
 

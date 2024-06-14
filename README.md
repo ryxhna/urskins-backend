@@ -8,6 +8,8 @@ npm -v
 node --version
 npm init --y
 npm install @hapi/hapi
+npm install -g nodemon
+npm install --save-dev nodemon
 npm install eslint --save-dev
 npx eslint --init
 
@@ -46,6 +48,9 @@ firebase deploy --config src/firebase-config/firebase.json
 
 ----- Machine Learning -----
 req tensorflow ml: 2.13.0
+
+npm install @tensorflow/tfjs-node
+npm install rimraf@latest glob@latest
 
 sudo apt update
 sudo apt install python3-pip

@@ -36,7 +36,11 @@ async function userLogin(request, h) {
     const response = h.response({
         status: 'success',
         message: 'User logged in successfully',
-        data: { id: user.id, fullName: user.fullName, email: user.email }
+        data: {
+            id: user.id,
+            fullName: user.fullName,
+            email: user.email
+        }
     });
     response.code(200);
     return response;
