@@ -2,7 +2,7 @@ const { userLogin } = require('../controller/authManual/login');
 const { userRegist } = require('../controller/authManual/register');
 const { loginGoogle } = require('../controller/authGoogle/loginGoogle');
 const { callback } = require('../controller/authGoogle/callback');
-const { uploadImage } = require('../model/imagePredict');
+const { getProfile } = require('../controller/database/profileUser');
 
 const routes = [{
         method: 'POST',
@@ -25,18 +25,9 @@ const routes = [{
         handler: callback,
     },
     {
-        method: 'POST',
-        path: '/predict/upload-disease',
-        handler: uploadImage,
-        options: {
-            payload: {
-                allow: 'multipart/form-data',
-                multipart: true,
-                output: 'stream',
-                parse: true,
-                maxBytes: 1000000 //batas ukuran untuk maksimum payload
-            }
-        }
+        method: 'GET',
+        path: '/profile/{userId}',
+        handler: getProfile,
     }
 ];
 

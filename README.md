@@ -49,13 +49,16 @@ firebase deploy --config src/firebase-config/firebase.json
 ----- Machine Learning -----
 req tensorflow ml: 2.13.0
 
-npm install @tensorflow/tfjs-node
-npm install rimraf@latest glob@latest
+npm view @tensorflow/tfjs-node versions
+pip install tensorflow==<tab>
+
+npm uninstall @tensorflow/tfjs-node
+npm install @tensorflow/tfjs-node@2.13.0
 
 sudo apt update
 sudo apt install python3-pip
 pip --version
-pip install tensorflow==2.13.0
+pip install tensorflow
 
 ----- Langkah ADC -----
 gcloud --version
@@ -73,6 +76,7 @@ git add .
 git commit -m "temporary code predict"
 git branch -M main
 git push -u origin main
+git push --force origin main
 
 ----- Configure Git to Use the Token (Optional but Recommended) -----
 git config --global credential.helper manager-core
