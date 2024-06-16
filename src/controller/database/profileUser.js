@@ -1,12 +1,12 @@
 const admin = require('firebase-admin');
-const firestore = admin.firestore(); // Assuming `admin` is already initialized
+const firestore = admin.firestore();
 
+// membuat fungsi untuk menampilkan database user pada profile
 const getProfile = async(request, h) => {
     const userId = request.params.userId;
 
     try {
         const userDoc = await firestore.collection('userData').doc(userId).get();
-
         if (!userDoc.exists) {
             const response = h.response({
                 status: 'fail',
@@ -17,7 +17,6 @@ const getProfile = async(request, h) => {
         }
 
         const profile = userDoc.data();
-
         const response = h.response({
             status: 'success',
             data: {
@@ -31,7 +30,8 @@ const getProfile = async(request, h) => {
         return response;
 
     } catch (error) {
-        console.error("Error fetching profile:", error); // Log specific error details
+        // membuat log jika terjadi kesalahan
+        console.error("Error fetching profile:", error);
 
         const response = h.response({
             status: 'error',

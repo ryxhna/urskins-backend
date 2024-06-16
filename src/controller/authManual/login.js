@@ -5,13 +5,13 @@ function hashPassword(password) {
     return crypto.createHash('sha256').update(password).digest('hex');
 }
 
-// User login handler
+// fungsi login menggunakan database firestore
 async function userLogin(request, h) {
     const { email, password } = request.payload;
 
     const users = await getFirestoreData();
 
-    // Check if the email is registered
+    // cek kondisi email user apakah sudah terdaftar atau belum
     const user = users.find(user => user.email === email);
     if (!user) {
         const response = h.response({
@@ -22,7 +22,7 @@ async function userLogin(request, h) {
         return response;
     }
 
-    // Check if the password is correct
+    // mengecek password 
     const hashedPassword = hashPassword(password);
     if (user.password !== hashedPassword) {
         const response = h.response({

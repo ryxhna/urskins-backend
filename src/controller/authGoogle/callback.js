@@ -3,12 +3,14 @@ const process = require('process');
 const { storeData } = require('../database/firestoreFunction');
 const { firestore } = require('../database/firestore');
 
+// fitur login by google menggunakan konsep OAuth 2.0
 const oauth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
     'http://localhost:3000/auth/google/callback'
 );
 
+// membuat fungsi callback 
 const callback = async(request, h) => {
     try {
         const { code } = request.query;
@@ -26,19 +28,18 @@ const callback = async(request, h) => {
             return h.response({ data: null }).code(400);
         }
 
-        // Check if user exists in Firestore
+        // cek apakah data user sudah ada di database
         const userRef = firestore.collection('userData').doc(data.id);
         const doc = await userRef.get();
 
         if (!doc.exists) {
-            // User does not exist, create a new user
+            // jika data user belum ada maka akan diminta untuk membuat baru
             await storeData(data.id, {
                 id: data.id,
                 email: data.email,
                 name: data.name,
             });
         } else {
-            // User exists, you can update their information if needed
             await userRef.update({
                 email: data.email,
                 name: data.name,

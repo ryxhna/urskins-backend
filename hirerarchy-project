@@ -1,0 +1,37 @@
+C241-PS485 CAPSTONE URSKIN
+├── node_modules
+├── src
+│   ├── controller
+│   │   ├── authGoogle
+│   │   │   ├── callback.js
+│   │   │   ├── loginGoogle.js
+│   │   ├── authManual
+│   │   │   ├── login.js
+│   │   │   ├── register.js
+│   │   ├── database
+│   │   │   ├── firestore.js
+│   │   │   ├── firestoreFunction.js
+│   │   │   ├── profileUser.js
+│   │   ├── exceptions
+│   │   │   ├── ClientError.js
+│   │   ├── ├── InputError.js
+│   ├── firebase-config
+│   │   ├── .firebaserc
+│   │   ├── firebase.json
+│   │   ├── firestore.indexes.json
+│   │   ├── firestore.rules
+│   │   ├── serviceAccountKey.json
+│   ├── server
+│   │   ├── routes.js
+│   │   ├── server.js
+├── .dockerignore
+├── .env
+├── .gitignore
+├── credentials.json
+├── eslint.config.mjs
+├── hierarchy-project
+├── LICENSE
+├── package-lock.json
+├── package.json
+├── README.md
+├── requirements.json

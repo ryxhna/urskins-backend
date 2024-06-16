@@ -1,3 +1,4 @@
+// melakukan inisialisasi dan konfigurasi firebase menggunakan firebase admin sdk
 const admin = require('firebase-admin');
 const serviceAccount = require('../../firebase-config/serviceAccountKey.json');
 

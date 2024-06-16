@@ -1,16 +1,12 @@
-//TODO: Re-Write to more simple code
 const { firestore } = require('./firestore');
 
+// menggunakan collection userData pada cloud firestore
 async function storeData(id, data) {
     const userDatabaseCollection = firestore.collection('userData');
     return userDatabaseCollection.doc(id).set(data);
 }
 
-async function storePredictionData(id, data) {
-    const userDatabaseCollection = firestore.collection('prediction');
-    return userDatabaseCollection.doc(id).set(data);
-}
-
+// membuat fungsi untuk menyimpan database user saat registrasi
 async function getFirestoreData() {
     try {
         const snapshot = await firestore.collection('userData').get();
@@ -27,18 +23,4 @@ async function getFirestoreData() {
     }
 }
 
-async function getPredictionData() {
-    try {
-        const snapshot = await firestore.collection('prediction').get();
-        const histories = [];
-        snapshot.forEach(doc => {
-            histories.push(doc.data());
-        });
-        return histories.length > 0 ? histories : [];
-    } catch (error) {
-        console.error('Error in getPredictionData:', error);
-        return [];
-    }
-}
-
-module.exports = { storeData, storePredictionData, getFirestoreData, getPredictionData, };
+module.exports = { storeData, getFirestoreData, };

@@ -5,13 +5,14 @@ function hashPassword(password) {
     return crypto.createHash('sha256').update(password).digest('hex');
 }
 
-// User registration handler
+// fungsi registrasi secara manual
 async function userRegist(request, h) {
     const { fullName, email, password } = request.payload;
 
+    // database user akan disimpan menggunakan cloud firestore
     const users = await getFirestoreData();
 
-    // Check if the email is already registered
+    // cek email apakah user sudah pernah melakukan registrasi
     const existingUser = users.find(user => user.email === email);
     if (existingUser) {
         const response = h.response({
@@ -22,7 +23,7 @@ async function userRegist(request, h) {
         return response;
     }
 
-    // Hash the password
+    // melakukan hash password menggunakan hash dan membuat id dengan uuid
     const hashedPassword = hashPassword(password);
     const userId = crypto.randomUUID();
     const createdAt = new Date().toISOString();
@@ -35,7 +36,6 @@ async function userRegist(request, h) {
         createdAt: createdAt
     };
 
-    // Store user data
     await storeData(userId, userData);
 
     const response = h.response({

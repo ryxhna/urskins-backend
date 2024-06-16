@@ -73,7 +73,7 @@ git config --global user.name ryxhna
 
 git init
 git add .
-git commit -m "temporary code predict"
+git commit -m "controller and profile fix"
 git branch -M main
 git push -u origin main
 git push --force origin main
