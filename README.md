@@ -8,6 +8,7 @@ npm -v
 node --version
 npm init --y
 npm install @hapi/hapi
+npm install @google-cloud/storage
 npm install -g nodemon
 npm install --save-dev nodemon
 npm install eslint --save-dev
