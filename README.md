@@ -74,10 +74,10 @@ git config --global user.name ryxhna
 
 git init
 git add .
-git commit -m "controller and profile fix"
+git commit -m "updated user profile"
 git branch -M main
 git push -u origin main
-git push --force origin main
+git push --force origin main (bila terjadi error karena nabrak)
 
 ----- Configure Git to Use the Token (Optional but Recommended) -----
 git config --global credential.helper manager-core
