@@ -92,12 +92,15 @@ gcloud auth configure-docker
 gcloud builds submit --tag asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0
 gcloud run deploy --image asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0
 
------ if you have error with port try this -----
-sudo netstat -tulnp | grep 8080
-ps -p (Nomer Prosesnya) -o pid,ppid,cmd,%mem,%cpu
+----- if you have error with port try this on cloud shell terminal -----
+netstat -ltpn
+fuser -k 3000/tcp --> sesuaikan
+gcloud run deploy --source . --port 3000
+docker run -p 8080:8080 --env-file .env
 
-kalo dirasa CMD nya ga penting/ga di pake bisa di kill pake gini 
-fuser -k 8080/tcp
+gcloud builds submit --tag asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0
+docker run -p 8080:8080 --env-file .env asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0
+
 
 ------------------------------
 CATATAN
