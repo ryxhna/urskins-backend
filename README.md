@@ -74,7 +74,7 @@ git config --global user.name ryxhna
 
 git init
 git add .
-git commit -m "updated user profile"
+git commit -m "deploy to cloud run"
 git branch -M main
 git push -u origin main
 git push --force origin main (bila terjadi error karena nabrak)
