@@ -12,6 +12,7 @@ C241-PS485 CAPSTONE URSKIN
 │   │   │   ├── firestore.js
 │   │   │   ├── firestoreFunction.js
 │   │   │   ├── profileUser.js
+│   │   │   ├── serviceaccountkey-storage.json
 │   │   ├── exceptions
 │   │   │   ├── ClientError.js
 │   │   ├── ├── InputError.js
@@ -29,6 +30,7 @@ C241-PS485 CAPSTONE URSKIN
 ├── .gitignore
 ├── credentials.json
 ├── eslint.config.mjs
+├── deployment.yaml
 ├── hierarchy-project
 ├── LICENSE
 ├── package-lock.json
