@@ -83,9 +83,26 @@ git push --force origin main (bila terjadi error karena nabrak)
 git config --global credential.helper manager-core
 git config --global credential.helper store
 
+----- Preparing Artifact Registery & Cloud Run -----
+gcloud services enable artifactregistry.googleapis.com cloudbuild.googleapis.com run.googleapis.com
+gcloud artifacts repositories create backend --repository-format=docker --location=asia-southeast2 --async
+
+gcloud auth configure-docker
+
+gcloud builds submit --tag asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0
+gcloud run deploy --image asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0
+
+----- if you have error with port try this -----
+sudo netstat -tulnp | grep 8080
+ps -p (Nomer Prosesnya) -o pid,ppid,cmd,%mem,%cpu
+
+kalo dirasa CMD nya ga penting/ga di pake bisa di kill pake gini 
+fuser -k 8080/tcp
+
 ------------------------------
 CATATAN
 > We're using admin.firestore() to access Firestore, which is the recommended way when using Firebase Admin SDK.
 > token github ghina: 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
 > git remote add origin https://github.com/ryxhna/urskins-backend.git
 > git remote set-url origin https://ryxhna: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@github.com/ryxhna/urskins-backend.git
+

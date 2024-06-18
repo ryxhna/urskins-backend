@@ -4,12 +4,13 @@ const routes = require('./routes');
 const process = require('process');
 
 const init = async() => {
-    // Mendefinisikan port di docker, jadi gak langsung
-    // port: process.env.PORT,
-    // host: '0.0.0.0',
     const server = Hapi.server({
-        port: 3000,
-        host: 'localhost',
+        // Mendefinisikan port di docker, jadi gak langsung
+        port: process.env.PORT || 8080,
+        host: '0.0.0.0',
+        // testing lokal
+        // port: 3000,
+        // host: 'localhost',
         routes: {
             cors: {
                 origin: ['*'],

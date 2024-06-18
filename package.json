@@ -1,5 +1,5 @@
 {
-    "name": "urskin-hapi",
+    "name": "urskin",
     "version": "1.0.0",
     "description": "npm init -y\r npm install eslint --save-dev\r npm i nodemon cors express fire\r npm install multer @google-cloud/storage",
     "main": "index.js",
