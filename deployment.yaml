@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0', '.']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'deploy', 'urskin-backend', 
+          '--image', 'asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0',
+          '--region', 'asia-southeast2',
+          '--platform', 'managed']
+images: ['asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0']

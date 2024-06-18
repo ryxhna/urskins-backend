@@ -83,26 +83,42 @@ git push --force origin main (bila terjadi error karena nabrak)
 git config --global credential.helper manager-core
 git config --global credential.helper store
 
------ Preparing Artifact Registery & Cloud Run -----
+
+-------------------------------
+----- Configurate Backend -----
+<service-name: urskin-backend>
+<repository-artifact-registry: backend>
+<image: urskin>
+<link: 'https://urskin-backend-wsfh3stk4q-et.a.run.app'>
+
+
+----- Preparing use Artifact Registery -----
 gcloud services enable artifactregistry.googleapis.com cloudbuild.googleapis.com run.googleapis.com
 gcloud artifacts repositories create backend --repository-format=docker --location=asia-southeast2 --async
+gcloud artifacts repositories list
 
+----- Cloud Build and Docker Pull -----
 gcloud auth configure-docker
-
 gcloud builds submit --tag asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0
-gcloud run deploy --image asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0
+gcloud auth configure-docker asia-southeast2-docker.pkg.dev
+docker pull \
+    asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0
+docker pull \
+    asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin@sha256:60a86eb00206d85ab099a5f063892a3fd2d9e504e4054e3aa706c84c45fee961
+    
+docker push asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0
+gcloud builds submit --region=asia-east1 --config deployment.yaml
 
 ----- if you have error with port try this on cloud shell terminal -----
 netstat -ltpn
+netstat -ltpn | grep 3000
 fuser -k 3000/tcp --> sesuaikan
-gcloud run deploy --source . --port 3000
-docker run -p 8080:8080 --env-file .env
-
-gcloud builds submit --tag asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0
-docker run -p 8080:8080 --env-file .env asia-southeast2-docker.pkg.dev/urskin-bangkit2024/backend/urskin:1.0.0
+kill <PID/Program-Name>
+gcloud run deploy --source . --port 8080
+docker run -p 8080:8080 --env-file .env urskin-backend
 
 
-------------------------------
+-------------------------------
 CATATAN
 > We're using admin.firestore() to access Firestore, which is the recommended way when using Firebase Admin SDK.
 > token github ghina: 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
